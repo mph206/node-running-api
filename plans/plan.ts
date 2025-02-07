@@ -32,3 +32,9 @@ export interface TrainingPlan {
     distance: number;
     moving_time: number;
   }
+
+  export interface StravaAthlete {
+    firstname: string,
+    lastname: string,
+    sex: string
+  }

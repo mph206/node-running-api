@@ -5,6 +5,7 @@ import { createUser } from "../persistence/Users.ts";
 import { StravaClient } from "../clients/stravaClient.ts";
 import planData from "../plans/plans.json" with { type: "json" };
 import { createTrainingEntry, getTrainingHistory } from "../persistence/Training.ts";
+import { StravaAthlete } from "../plans/plan.ts";
 
 export async function getActivities(req: Request, res: Response): Promise<void> {
   try {
@@ -93,9 +94,19 @@ export function trainingHistory(req: Request, res: Response): void{
 export async function signUp(req: Request, res: Response): Promise<void>{
   try {
     const userId: string = req.body.userId;
-    // TODO get user from API
-    const user: User = { id: "12345", givenName: "Tester", familyName: "Joe", sex: "M"}
+    const stravaToken = Deno.env.get("STRAVA_ACCESS_TOKEN") as string;
+    const client = new StravaClient(stravaToken);
+    const athlete: StravaAthlete  = await client.getAthlete(userId)
+    const user: User = {
+      id: userId,
+      givenName: athlete.firstname,
+      familyName:  athlete.lastname,
+      sex: athlete.sex as "M" | "F"
+    }
+
     await createUser(user)
+    res.status(200).json({ status: "ok" });
+
   } catch (error) {
     res.status(500).json({ error: "Failed" });
     console.log(error)

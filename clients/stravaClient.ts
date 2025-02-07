@@ -1,4 +1,4 @@
-import { StravaActivity } from "../plans/plan.ts";
+import { StravaActivity, StravaAthlete } from "../plans/plan.ts";
 
 
 export class StravaClient {
@@ -27,15 +27,19 @@ export class StravaClient {
   }
 
 
-  async getActivities(): Promise<StravaActivity[]> {
+  getActivities(): Promise<StravaActivity[]> {
     return this.request<StravaActivity[]>('/athlete/activities');
   }
 
-  async getActivity(activityId: string): Promise<StravaActivity> {
+  getActivity(activityId: string): Promise<StravaActivity> {
     return this.request<StravaActivity>(`/activities/${activityId}`);
   }
 
-  async getActivitiesByUserId(userId: string): Promise<StravaActivity[]> {
+  getActivitiesByUserId(userId: string): Promise<StravaActivity[]> {
     return this.request<StravaActivity[]>(`/athletes/${userId}/activities`);
+  }
+
+  getAthlete(userId: string): Promise<StravaAthlete> {
+    return this.request<StravaAthlete>(`/athlete`);
   }
 }
