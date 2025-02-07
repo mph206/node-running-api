@@ -1,0 +1,100 @@
+{
+    "plans": [
+      {
+        "id": "5k-beginner",
+        "name": "5K Beginner Weekly Plan",
+        "description": "Basic week structure for beginner 5K runners",
+        "difficulty": "beginner",
+        "weeklySchedule": [
+          {
+            "id": "5k-b-1",
+            "dayNumber": 2, 
+            "type": "easy",
+            "distance": 2000,
+            "duration": 1200,
+            "description": "Easy run to build base fitness"
+          },
+          {
+            "id": "5k-b-2",
+            "dayNumber": 4, 
+            "type": "intervals",
+            "distance": 2500,
+            "duration": 1500,
+            "description": "6x200m intervals with 200m recovery jog"
+          },
+          {
+            "id": "5k-b-3",
+            "dayNumber": 6,
+            "type": "long",
+            "distance": 3000,
+            "duration": 1800,
+            "description": "Long slow distance run"
+          }
+        ]
+      },
+      {
+        "id": "10k-intermediate",
+        "name": "10K Intermediate Weekly Plan",
+        "description": "Weekly structure for intermediate 10K runners",
+        "difficulty": "intermediate",
+        "weeklySchedule": [
+          {
+            "id": "10k-i-1",
+            "dayNumber": 2,
+            "type": "intervals",
+            "distance": 6000,
+            "duration": 3000,
+            "description": "8x400m at 5K pace"
+          },
+          {
+            "id": "10k-i-2",
+            "dayNumber": 4,
+            "type": "tempo",
+            "distance": 7000,
+            "duration": 3300,
+            "description": "30 minute tempo run"
+          },
+          {
+            "id": "10k-i-3",
+            "dayNumber": 6,
+            "type": "long",
+            "distance": 12000,
+            "duration": 6000,
+            "description": "Long run"
+          }
+        ]
+      },
+      {
+        "id": "marathon-advanced",
+        "name": "Marathon Advanced Weekly Plan",
+        "description": "Weekly structure for advanced marathoners",
+        "difficulty": "advanced",
+        "weeklySchedule": [
+          {
+            "id": "mar-a-1",
+            "dayNumber": 2,
+            "type": "intervals",
+            "distance": 12000,
+            "duration": 5400,
+            "description": "6x1mile at threshold pace"
+          },
+          {
+            "id": "mar-a-2",
+            "dayNumber": 4,
+            "type": "tempo",
+            "distance": 16000,
+            "duration": 7200,
+            "description": "2x5K at marathon pace"
+          },
+          {
+            "id": "mar-a-3",
+            "dayNumber": 6,
+            "type": "long",
+            "distance": 25000,
+            "duration": 11700,
+            "description": "Long run with last 5K at marathon pace"
+          }
+        ]
+      }
+    ]
+  }
