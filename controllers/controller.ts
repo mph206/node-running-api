@@ -9,7 +9,6 @@ import { StravaAthlete } from "../plans/plan.ts";
 
 export async function getActivities(req: Request, res: Response): Promise<void> {
   try {
-    // const stravaToken = req.headers['x-strava-token'] as string;
     const stravaToken = Deno.env.get("STRAVA_ACCESS_TOKEN") as string;
 
     if (!stravaToken) {
@@ -30,7 +29,6 @@ export async function getActivities(req: Request, res: Response): Promise<void> 
 
 export async function getPlans(req: Request, res: Response) {
   try {
-    // Fetch available training plans
     res.send(planData);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch plans" });
@@ -38,11 +36,9 @@ export async function getPlans(req: Request, res: Response) {
   }
 }
 
-// TODO
 export async function linkActivity(req: Request, res: Response): Promise<void> {
   try {
-    const { planId, runId } = req.params;
-    const { stravaActivityId, weekId, userId, day } = req.body;
+    const { planId, stravaActivityId, weekId, userId, day } = req.body;
 
     if (!stravaActivityId || !weekId || !userId || !day) {
       res.status(400).json({ error: "Missing required parameters" });
@@ -81,10 +77,12 @@ export async function linkActivity(req: Request, res: Response): Promise<void> {
   }
 }
 
-export function trainingHistory(req: Request, res: Response): void{
+export async function trainingHistory(req: Request, res: Response): Promise<void> {
   try {
-    const {userId, planId}: { userId: string, planId: string } = req.body;
-    getTrainingHistory(userId, planId)
+    const params = req.query as { userId: string, planId: string };
+    console.log(params )
+    const training = await getTrainingHistory(params.userId, params.planId)
+    res.status(200).json(training);
   } catch (error) {
     res.status(500).json({ error: "Failed" });
     console.log(error)
